@@ -179,6 +179,8 @@ defmodule ExMustache.Parser do
   end
 
   #DJE - this function is being deprecated when used with a compiled pattern but they use it extensively.
+  #These functions are covered by the LICENSE.elixir file
+  @type t :: binary
   @spec string_starts_with?(t, t | [t]) :: boolean
    defp string_starts_with?(string, prefix) when is_binary(string) and is_binary(prefix) do
      starts_with_string?(string, byte_size(string), prefix)
@@ -192,6 +194,17 @@ defmodule ExMustache.Parser do
   defp string_starts_with?(string, prefix) when is_binary(string) do
      Kernel.match?({0, _}, :binary.match(string, prefix))
    end
+
+  @compile {:inline, starts_with_string?: 3}
+  defp starts_with_string?(string, string_size, prefix) when is_binary(prefix) do
+    prefix_size = byte_size(prefix)
+
+    if prefix_size <= string_size do
+      prefix == binary_part(string, 0, prefix_size)
+    else
+      false
+    end
+  end
 
 
   defp tag(field) do

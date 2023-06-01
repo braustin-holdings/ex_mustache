@@ -14,8 +14,8 @@ defmodule ExMustache.MixProject do
       description: description(),
 
       # Docs
-      source_url: "https://github.com/akash-akya/ex_mustache",
-      homepage_url: "https://github.com/akash-akya/ex_mustache",
+      source_url: "https://github.com/braustin-holdings/ex_mustache",
+      homepage_url: "https://github.com/braustin-holdings/ex_mustache",
       docs: [
         main: "readme",
         extras: ["README.md"]
@@ -37,16 +37,16 @@ defmodule ExMustache.MixProject do
     [
       maintainers: ["Akash Hiremath"],
       licenses: ["MIT"],
-      links: %{GitHub: "https://github.com/akash-akya/ex_mustache"}
+      links: %{GitHub: "https://github.com/braustin-holdings/ex_mustache"}
     ]
   end
 
   defp deps do
     [
-      {:bbmustache, "~> 1.4.0", only: [:dev, :test]},
-      {:yaml_elixir, "~> 1.0", only: [:test]},
-      {:benchee, "~> 1.0", only: :dev},
-      {:poison, "~> 3.0.0", only: :dev},
+      {:bbmustache, "~> 1.12.2", only: [:dev, :test]},
+      {:yaml_elixir, "~> 2.9", only: [:test]},
+      {:benchee, "~> 1.1", only: :dev},
+      {:poison, "~> 3.1", only: :dev},
       {:temp, "~> 0.4", only: :test},
       {:ex_doc, ">= 0.0.0", only: :dev}
     ]
