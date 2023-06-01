@@ -4,12 +4,14 @@ ExMustache is fast mustache templating library for Elixir.
 
 ExMustache supports everything except lambda from mustache spec. It is faster and uses lesser memory when compared to alternatives. ExMustache is a pure elixir implementation.
 
+** Updated to require Elixir 1.14 - and handle the deprecation of the starts_with **
+
 ## Installation
 
 ```elixir
 def deps do
   [
-    {:ex_mustache, "~> x.x.x"}
+    {:ex_mustache, "~> 0.2.0"}
   ]
 end
 ```

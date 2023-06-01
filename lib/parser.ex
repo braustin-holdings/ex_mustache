@@ -171,12 +171,28 @@ defmodule ExMustache.Parser do
   end
 
   defp match_repeated(<<_::utf8, rest::binary>> = string, pattern, index) do
-    if String.starts_with?(string, pattern) do
+    if string_starts_with?(string, pattern) do
       match_repeated(rest, pattern, index + 1)
     else
       index
     end
   end
+
+  #DJE - this function is being deprecated when used with a compiled pattern but they use it extensively.
+  @spec string_starts_with?(t, t | [t]) :: boolean
+   defp string_starts_with?(string, prefix) when is_binary(string) and is_binary(prefix) do
+     starts_with_string?(string, byte_size(string), prefix)
+   end
+
+  defp string_starts_with?(string, prefix) when is_binary(string) and is_list(prefix) do
+     string_size = byte_size(string)
+     Enum.any?(prefix, &starts_with_string?(string, string_size, &1))
+   end
+
+  defp string_starts_with?(string, prefix) when is_binary(string) do
+     Kernel.match?({0, _}, :binary.match(string, prefix))
+   end
+
 
   defp tag(field) do
     case field do
